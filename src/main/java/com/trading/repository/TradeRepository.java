@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TradeRepository extends JpaRepository<Trade, Long> {
 
-    List<Trade> findByBuyOrderStockId(Long stockId);
+    List<Trade> findTop10ByBuyOrderStockIdOrderByExecutedAtDesc(Long stockId);
 }

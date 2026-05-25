@@ -15,6 +15,6 @@ public class TradeService {
     private final TradeRepository tradeRepository;
 
     public List<Trade> getTradesByStock(Long stockId) {
-        return tradeRepository.findByBuyOrderStockId(stockId);
+        return tradeRepository.findTop10ByBuyOrderStockIdOrderByExecutedAtDesc(stockId);
     }
 }

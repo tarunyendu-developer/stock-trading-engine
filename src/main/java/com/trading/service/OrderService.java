@@ -128,7 +128,7 @@ public class OrderService {
     public OrderBookResponse getOrderBook(Long stockId) {
 
         List<OrderResponse> buyOrders = orderRepository
-                .findByStockIdAndOrderTypeAndStatusOrderByPriceDesc(stockId, OrderType.BUY, OrderStatus.OPEN)
+                .findTop5ByStockIdAndOrderTypeAndStatusOrderByPriceDesc(stockId, OrderType.BUY, OrderStatus.OPEN)
                 .stream()
                 .map(order -> OrderResponse.builder()
                         .orderId(order.getId())
@@ -143,7 +143,7 @@ public class OrderService {
                 .collect(Collectors.toList());
 
         List<OrderResponse> sellOrders = orderRepository
-                .findByStockIdAndOrderTypeAndStatusOrderByPriceAsc(stockId, OrderType.SELL, OrderStatus.OPEN)
+                .findTop5ByStockIdAndOrderTypeAndStatusOrderByPriceAsc(stockId, OrderType.SELL, OrderStatus.OPEN)
                 .stream()
                 .map(order -> OrderResponse.builder()
                         .orderId(order.getId())
